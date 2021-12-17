@@ -26,7 +26,8 @@ export const api = (request: Request, data?: Partial<Todo>) => {
         case 'PATCH':
             todos = todos.map(todo => {
                 if (todo.uid === request.params.uid) {
-                    todo.text = data.text;
+                    if (data.text) todo.text = data.text;
+                    else todo.done = data.done;
                 }
                 return todo;
             });
